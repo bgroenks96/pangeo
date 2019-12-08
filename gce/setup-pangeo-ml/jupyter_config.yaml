@@ -1,0 +1,16 @@
+# file: jupyter_config.yaml
+
+jupyterhub:
+  singleuser:
+    cpu:
+      limit: 8
+      guarantee: 2
+    memory:
+      limit: 14G
+      guarantee: 4G
+
+  # this section specifies the IP address for pangeo
+  proxy:
+    service:
+      loadBalancerIP: 34.83.22.194
+
