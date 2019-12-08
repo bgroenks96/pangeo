@@ -1,0 +1,23 @@
+name: CMIP5 Monthly Temperature Predictions
+
+conda_env: environment.yaml
+
+entry_points:
+  lasso:
+    parameters:
+      data_file: {type: string}
+      min_alpha: {type: float, default: 1.0E-2}
+      max_alpha: {type: float, default: 100}
+      num_alpha: {type: int, default: 10}
+    command: "python run_lasso_cv.py --min-alpha {min_alpha} --max-alpha {max_alpha} --num-alpha {num_alpha} {data_file}"
+    
+  cnn:
+    parameters:
+      data_file: {type: string}
+      min_l2_reg: {type: float, default: 1.0E-4}
+      max_l2_reg: {type: float, default: 1.0}
+      num_l2_reg: {type: int, default: 10}
+      min_layers: {type: int, default: 1}
+      max_layers: {type: float, default: 4}
+    command: "python run_cnn_cv.py --min-l2-reg {min_l2_reg} --max-l2-reg {max_l2_reg} --num-l2-reg {num_l2_reg} \
+              --min-layers {min_layers} --max-layers {max_layers} {data_file}"
