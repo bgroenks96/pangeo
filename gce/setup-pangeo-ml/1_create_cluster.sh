@@ -13,7 +13,7 @@ gcloud container node-pools create worker-pool --zone=$ZONE --cluster=$CLUSTER_N
     --machine-type=$WORKER_MACHINE_TYPE --preemptible --num-nodes=$MIN_WORKER_NODES
 gcloud container node-pools create gpu-worker-pool --zone=$ZONE --cluster=$CLUSTER_NAME --node-labels=group=worker \
     --machine-type=$GPU_WORKER_MACHINE_TYPE --preemptible --num-nodes=$MIN_GPU_WORKER_NODES \
-    --accelerator type='nvidia-tesla-k80',count=1
+    --accelerator type='nvidia-tesla-v100',count=1
 gcloud container clusters update $CLUSTER_NAME --zone=$ZONE --node-pool=worker-pool --enable-autoscaling --max-nodes=$MAX_WORKER_NODES --min-nodes=$MIN_WORKER_NODES
 gcloud container clusters update $CLUSTER_NAME --zone=$ZONE --node-pool=gpu-worker-pool --enable-autoscaling --max-nodes=$MAX_GPU_WORKER_NODES --min-nodes=$MIN_GPU_WORKER_NODES
 gcloud container clusters get-credentials $CLUSTER_NAME --zone=$ZONE --project $PROJECTID
